@@ -2,8 +2,9 @@ def fact(n):
     if n <= 1:
         return n
     else:
-        return n * fact(n)
-print(fact(3))
+        return n * fact(n-1)
+print(fact(3))    
+print(fact(4))
 
 def counter(n):
     li = [n]
