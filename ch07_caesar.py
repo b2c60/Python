@@ -7,14 +7,16 @@ import string
 def caesar_table(shift, encrypt=True):
     lowers = string.ascii_lowercase   #小寫英文字母
     uppers = string.ascii_uppercase   #大寫英文字母
+    digits = string.digits
     lowers_new = lowers[shift:] + lowers[:shift]
     uppers_new = uppers[shift:] + uppers[:shift]
+    digits_new = digits[shift:] + digits[:shift]
     #若是2.X版，請把str.maketrans改成string.maketrans
     #maketrans的功能是製作轉換表，供str.translate使用
     if encrypt:
-        return str.maketrans(lowers+uppers, lowers_new+uppers_new)
+        return str.maketrans(lowers+uppers+digits, lowers_new+uppers_new+digits_new)
     else:
-        return str.maketrans(lowers_new+uppers_new, lowers+uppers)
+        return str.maketrans(lowers_new+uppers_new+digits_new, lowers+uppers+digits)
 #凱薩密碼，shift是偏移量，encrypt代表要加密還是解密
 def caesar(file_in, file_out, shift, encrypt=True):
     table = caesar_table(shift, encrypt)
