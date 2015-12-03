@@ -1,3 +1,1 @@
-Hello Python!
-How are you?
-abc 123
+Hello Python
