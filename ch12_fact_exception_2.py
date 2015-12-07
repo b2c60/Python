@@ -14,9 +14,11 @@ while True:
         s = input('input n: ')
         f = fact(int(s))
     except TypeError as e:
-        print('Error: ' + str(e))
+        print('TypeError: ' + str(e))
     except ValueError as e:
-        print('Error: ' + str(e))
+        print('ValueError: ' + str(e))
+    except KeyboardInterrupt as e:
+        print('Input Error: ' + str(e))
     except:
         print('Error: unknown error')
     else:
