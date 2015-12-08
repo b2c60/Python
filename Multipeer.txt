@@ -1,0 +1,27 @@
+The Multipeer Connectivity framework provides support for discovering services provided by nearby iOS devices using infrastructure Wi-Fi networks, peer-to-peer Wi-Fi, and Bluetooth personal area networks and subsequently communicating with those services by sending message-based data, streaming data, and resources (such as files).
+
+Architecture
+
+When working with the Multipeer Connectivity framework, your app must interact with several types of objects, as described below.
+
+Session objects (MCSession) provide support for communication between connected peer devices. If your app creates a session, it can invite other peers to join it. Otherwise, your app can join a session when invited by another peer.
+Advertiser objects (MCNearbyServiceAdvertiser) tell nearby peers that your app is willing to join sessions of a specified type.
+Advertiser assistant objects (MCAdvertiserAssistant) provide the same functionality as advertiser objects, but also provide a standard user interface that allows the user to accept invitations. If you wish to provide your own user interface, or if you wish to exercise additional programmatic control over which invitations are displayed, use an advertiser object directly.
+Browser objects (MCNearbyServiceBrowser) let your app search programmatically for nearby devices with apps that support sessions of a particular type.
+Browser view controller objects (MCBrowserViewController) provide a standard user interface that allows the user to choose nearby peers to add to a session.
+Peer IDs (MCPeerID) uniquely identify an app running on a device to nearby peers.
+Session objects maintain a set of peer ID objects that represent the peers connected to the session. Advertiser objects also use a single local peer object to provide information that identifies the device and its user to other nearby devices.
+
+Using the Framework
+
+This framework is used in two phases: the discovery phase, and the session phase.
+
+In the discovery phase, your app uses a browser object (described in MCNearbyServiceBrowser Class Reference) to browse for nearby peers, optionally using the provided view controller (described in MCBrowserViewController Class Reference) to display a user interface.
+
+The app also uses an advertiser object (described in MCNearbyServiceAdvertiser Class Reference) or an advertiser assistant object (described in MCAdvertiserAssistant Class Reference) to tell nearby peers that it is available so that apps on other nearby devices can invite it to a session.
+
+During the discovery phase, your app has limited communication with and knowledge of other peers; it has access to the discoveryInfo data that other nearby clients provide, and any context data that other peers provide when inviting it to join a session.
+
+After the user chooses which peers to add to a session, the app invites those peers to join the session. Apps running on the nearby devices can choose whether to accept or reject the invitation, and can ask their users for permission.
+
+If the peer accepts the invitation, the browser establishes a connection with the advertiser and the session phase begins. In this phase, your app can perform direct communication to one or more peers within the session. The framework notifies your app through delegate callbacks when peers join the session and when they leave the session.
