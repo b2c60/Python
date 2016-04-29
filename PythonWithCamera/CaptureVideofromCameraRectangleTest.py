@@ -7,11 +7,14 @@ while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
 
+    
     # Our operations on the frame come here
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    cv2.rectangle(gray, (300, 100), (350, 150), (255,200,50), 2)
 
     # Display the resulting frame
     cv2.imshow('frame',gray)
+    cv2.imshow('Video' ,frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
