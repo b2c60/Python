@@ -5,20 +5,20 @@ resolution = [(160,120),(176,144),(320,240),(352,288),(641,480),(800,600),(1280,
 
 def change_resolution(w, h):
 
-   capture = cv2.VideoCapture(0)
+   capture = cv2.VideoCapture(1)
 
    num_frame = 0
 
-   size = capture.get(3), capture.get(4)
-   size_new = capture.set(3, w),capture.set(4,h)
-   size_now = capture.get(3), capture.get(4)
+   size = capture.get(cv2.CAP_PROP_FRAME_WIDTH), capture.get(cv2.CAP_PROP_FRAME_HEIGHT)
+   size_new = capture.set(cv2.CAP_PROP_FRAME_WIDTH, w),capture.set(cv2.CAP_PROP_FRAME_HEIGHT, h)
+   size_now = capture.get(cv2.CAP_PROP_FRAME_WIDTH), capture.get(cv2.CAP_PROP_FRAME_HEIGHT)
    print (size_now)
 
    start = time.time()
 
    while(True):
        ret, frame = capture.read()
-       cv2.imshow("Video", frame)
+       cv2.imshow("Doyu", frame)
        #if num_frame < 60:
        #    num_frame = num_frame + 1
        #    time.sleep(0.001)
